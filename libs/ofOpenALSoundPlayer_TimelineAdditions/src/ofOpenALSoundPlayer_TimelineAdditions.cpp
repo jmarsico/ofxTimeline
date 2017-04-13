@@ -11,7 +11,7 @@
 #include <math.h>
 #endif
 
-#include "ofxAudioDecoder.h"
+//#include "ofxAudioDecoder.h"
 
 ALCdevice * ofOpenALSoundPlayer_TimelineAdditions::alDevice = 0;
 ALCcontext * ofOpenALSoundPlayer_TimelineAdditions::alContext = 0;
@@ -197,26 +197,26 @@ bool ofOpenALSoundPlayer_TimelineAdditions::mpg123ReadFile(string path,vector<sh
 //------------------------------------------------------------
 bool ofOpenALSoundPlayer_TimelineAdditions::decoderReadFile(string path,vector<short> & buffer,vector<float> & fftAuxBuffer){
     
-    ofxAudioDecoder audioDecoder;
-    audioDecoder.load(path);
-    
-    if (audioDecoder.getNumSamples() == 0) {
-        ofLog(OF_LOG_ERROR,"ofOpenALSoundPlayer_TimelineAdditions: couldnt read " + path);
-        return false;
-    }
-    
-    buffer.resize(audioDecoder.getNumFrames() * audioDecoder.getNumChannels());
-    fftAuxBuffer.resize(audioDecoder.getNumFrames() * audioDecoder.getNumChannels());
-    
-    memcpy(fftAuxBuffer.data(), audioDecoder.getRawSamples().data(), audioDecoder.getNumSamples() * sizeof(float));
-    
-    for (int i = 0; i < fftAuxBuffer.size(); ++i) {
-        buffer[i] = 32565.0 * fftAuxBuffer[i];
-    }
-    
-    channels = audioDecoder.getNumChannels();
-    duration = float(audioDecoder.getNumFrames()) / float(audioDecoder.getSampleRate());
-    samplerate = audioDecoder.getSampleRate();
+//    ofxAudioDecoder audioDecoder;
+//    audioDecoder.load(path);
+//    
+//    if (audioDecoder.getNumSamples() == 0) {
+//        ofLog(OF_LOG_ERROR,"ofOpenALSoundPlayer_TimelineAdditions: couldnt read " + path);
+//        return false;
+//    }
+//    
+//    buffer.resize(audioDecoder.getNumFrames() * audioDecoder.getNumChannels());
+//    fftAuxBuffer.resize(audioDecoder.getNumFrames() * audioDecoder.getNumChannels());
+//    
+//    memcpy(fftAuxBuffer.data(), audioDecoder.getRawSamples().data(), audioDecoder.getNumSamples() * sizeof(float));
+//    
+//    for (int i = 0; i < fftAuxBuffer.size(); ++i) {
+//        buffer[i] = 32565.0 * fftAuxBuffer[i];
+//    }
+//    
+//    channels = audioDecoder.getNumChannels();
+//    duration = float(audioDecoder.getNumFrames()) / float(audioDecoder.getSampleRate());
+//    samplerate = audioDecoder.getSampleRate();
     return true;
 }
 
